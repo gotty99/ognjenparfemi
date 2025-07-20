@@ -1,0 +1,64 @@
+/* styles.css */
+
+body {
+  margin: 0;
+  padding: 20px;
+  font-family: sans-serif;
+  color: #333;
+}
+
+.main-title {
+  font-size: 1.1rem;
+  text-align: center;
+  line-height: 1.4;
+  margin-bottom: 30px;
+}
+
+section h2 {
+  font-size: 1rem;
+  margin-bottom: 15px;
+}
+
+.section-divider {
+  border: none;
+  height: 5px;
+  background-color: #888;
+  margin: 40px 0;
+}
+
+.perfume-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 20px;
+}
+
+
+.perfume-item {
+  width: 100%;
+}
+
+
+.perfume-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 6px;
+  margin-top: 20px;
+}
+
+.perfume-item h3 {
+  font-size: 0.95rem;
+  margin: 8px 0 4px;
+}
+
+.perfume-item p {
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+/* Fallback na jednu kolonu na malim ekranima */
+@media (max-width: 400px) {
+  .perfume-item {
+    width: 100%;
+  }
+}
