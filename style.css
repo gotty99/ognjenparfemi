@@ -62,3 +62,68 @@ section h2 {
     width: 100%;
   }
 }
+
+/* Top navigacija (fiksirana) */
+.top-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #333;
+  z-index: 1000;
+  transition: transform 0.3s ease; /* dodaj ovo */
+}
+
+.top-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 10px 16px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.top-nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.top-nav a:hover {
+  color: #ffcc00;
+}
+
+/* Razmak ispod fiksirane navigacije */
+body {
+  padding-top: 56px; /* prilagodi ako želiš više/manje */
+}
+
+/* Lepši skrol do sekcija */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Da se naslov sekcije ne sakrije ispod nav-a */
+section {
+  scroll-margin-top: 64px;
+}
+
+/* Animacija kontakt dugmića */
+.contact-btn {
+  transition: transform 0.4s ease, opacity 0.3s ease;
+  will-change: transform, opacity;
+}
+.contact-btn.hide-left {      /* odlazak ulevo pri skrolu nadole */
+  transform: translateX(-150%);
+  opacity: 0;
+}
+.contact-btn.hide-right {     /* polazna tačka desno pre ulaska pri skrolu nagore */
+  transform: translateX(150%);
+  opacity: 0;
+}
+
+/* Ako nemaš već dodato za nav: */
+.top-nav { transition: transform 0.3s ease; }
+
+

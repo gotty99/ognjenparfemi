@@ -7,14 +7,22 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <nav class="top-nav">
+  <ul>
+    <li><a href="#muski">Muški</a></li>
+    <li><a href="#zenski">Ženski</a></li>
+    <li><a href="#unisex">Unisex</a></li>
+  </ul>
+</nav>
+
 
   <header>
     <h1 class="main-title">
       Ćao! Ovo imam trenutno na stanju i dostupno je odmah. Ako ne možeš da se odlučiš, pitaj me za pomoć!<br><br>
-      U slučaju da nisi pronašao nešto za sebe, pitaj me, moguće je nabaviti i druge parfeme, uz malo čekanja <br><br>
-      +381 63565513 viber/whatsapp
+      U slučaju da nisi pronašao nešto za sebe, pitaj me, moguće je nabaviti skoro sve parfeme, uz malo čekanja<br><br>
+      Ognjen
     </h1>
-  </header>
+   </header>
 
   <section id="muski">
     <h2>Muški parfemi</h2>
@@ -314,17 +322,60 @@
   </section>
 
 <!-- Viber dugme -->
-<div style="position: fixed; bottom: 70px; right: 20px; z-index: 999;">
+<div class="contact-btn viber-btn" style="position: fixed; bottom: 70px; right: 20px; z-index: 999;">
   <a href="viber://chat?number=%2B38163565513" target="_blank" style="background-color: #7360f2; color: white; border-radius: 50px; padding: 12px 20px; text-decoration: none; font-weight: bold; box-shadow: 0 4px 8px rgba(0,0,0,0.2); display: flex; align-items: center; gap: 8px;">
     <i class="fab fa-viber" style="font-size: 1.2rem;"></i> Piši nam na Viber
   </a>
 </div>
 
-    <!-- WhatsApp dugme -->
-  <div style="position: fixed; bottom: 20px; right: 20px; z-index: 999;">
-    <a href="https://wa.me/38163565513" target="_blank" style="background-color: #25D366; color: white; border-radius: 50px; padding: 12px 20px; text-decoration: none; font-weight: bold; box-shadow: 0 4px 8px rgba(0,0,0,0.2); display: flex; align-items: center; gap: 8px;">
-      <i class="fab fa-whatsapp" style="font-size: 1.2rem;"></i> Piši nam na WhatsApp
-    </a>
-  
+<!-- WhatsApp dugme -->
+<div class="contact-btn whatsapp-btn" style="position: fixed; bottom: 20px; right: 20px; z-index: 999;">
+  <a href="https://wa.me/38163565513" target="_blank" style="background-color: #25D366; color: white; border-radius: 50px; padding: 12px 20px; text-decoration: none; font-weight: bold; box-shadow: 0 4px 8px rgba(0,0,0,0.2); display: flex; align-items: center; gap: 8px;">
+    <i class="fab fa-whatsapp" style="font-size: 1.2rem;"></i> Piši nam na WhatsApp
+  </a>
+</div>
+
+<script>
+  let lastScroll = 0;
+  const nav = document.querySelector(".top-nav"); // već postoji
+  const contactBtns = document.querySelectorAll(".contact-btn");
+
+  window.addEventListener("scroll", () => {
+    const currentScroll = window.pageYOffset;
+
+    if (currentScroll > lastScroll) {
+      // skrol nadole: nav gore, dugmad ulevo
+      if (nav) nav.style.transform = "translateY(-100%)";
+      contactBtns.forEach(btn => {
+        btn.classList.remove("hide-right");
+        btn.classList.add("hide-left");
+      });
+    } else {
+      // skrol nagore: nav nazad, dugmad krenu s desne pa uđu na poziciju
+      if (nav) nav.style.transform = "translateY(0)";
+      contactBtns.forEach(btn => {
+        // postavi ih instant desno...
+        btn.classList.remove("hide-left");
+        btn.classList.add("hide-right");
+        // ...onda forsiraj reflow i skini klasu da animiraju izdesna → pozicija
+        // (ovo obezbeđuje "ulazak sa desne strane")
+        void btn.offsetWidth;
+        btn.classList.remove("hide-right");
+      });
+    }
+
+    // na samom vrhu uvek prikaži sve
+    if (currentScroll <= 0) {
+      if (nav) nav.style.transform = "translateY(0)";
+      contactBtns.forEach(btn => {
+        btn.classList.remove("hide-left", "hide-right");
+      });
+    }
+
+    lastScroll = currentScroll;
+  });
+</script>
+
+
 </body>
 </html>
